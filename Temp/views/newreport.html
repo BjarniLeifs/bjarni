@@ -1,0 +1,99 @@
+<div ng-app="ramesApp" ng-controller="NewreportCtrl">
+  <form novalidate>
+    <div class="just-sec">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+            <div class="form-group">
+              <label>Report <Name></Name>:</label>
+              <input ng-model="reportName.Name" class="form-control" type="text" ng-init="reportName.Name = ''" />
+            </div>
+            <div>
+            <a class="a-collapse" ng-click="showDiv = !showDiv">
+                <div class="panel panel-default" ng-repeat="category in categories">
+                        <div class="panel-heading">
+                            <div class="bold-collapse"> {{category.category}} </div>
+                </a>
+                <div collapse="!showDiv">
+                    <div ng-show="showDiv" class="panel-body ">
+                        <div ng-repeat="info in ramesinfo">
+                            <div ng-if="info.categoryid == category.id">
+
+                                <a href="" ng-click="showInfo = !showInfo"><i class="fa fa-info" aria-hidden="true"></i></a>
+                                <label>{{info.name}}</label>
+                                <div class="questionSuggestion" ng-show="showInfo">
+                                    <div ng-repeat="question in questions">
+                                        <ul ng-if="question.ramesInfoid == info.id "> {{question.suggestion}} </ul>
+                                    </div>
+                                </div>
+                                <div ng-repeat="question in questions">
+                                    <ul ng-if="question.ramesinfoid == info.id">
+                                        <label>{{question.QuestionNr}}. {{question.question}}</label>
+                                        
+                                        <ul ng-if="question.type == 'num'">
+                                            <div class="form-group">
+                                                <input ng-model="reportInfo['Answer'][question.ID]" type="number" class="form-control" ng-init="reportInfo.Answer[question.ID] = ''">
+                                            </div>
+                                        </ul>
+                                        
+                                        <ul ng-if="question.type == 'text'">
+
+                                        </ul>
+                                        <ul ng-if="question.type == 'yesno'">
+                                            <input ng-model="reportInfo.answer[question.id]" type="radio" value='y' ng-init="reportInfo.Answer[question.id] = ''"> Yes
+                                            <input ng-model="reportInfo.answer[question.id]" type="radio" value='n'> No
+                                        </ul>
+                                        <ul ng-if="question.type == 'radio'">
+                                           
+                                        </ul>
+                                        <div ng-if="question.type == 'checkbox'">
+                                            <div ng-repeat="ch in checkboxChoices">
+                                                <ul ng-if="ch.questionid == question.id">
+                                                    <div ng-if="ch.textbox == 'n'">
+                                                        <input ng-model="reportInfo.answer[question.id][$index]" type="checkbox" ng-true-value="'{{ch.choice}}'" ng-false-value="''">  {{ch.choice}}
+                                                    </div>
+                                                    <div ng-if="ch.textbox == 'y'">
+                                                        <input ng-model="reportInfo.answer[question.id][$index]" type="checkbox" ng-true-value="'{{ch.choice}}'" ng-false-value="''">  {{ch.choice}}
+                                                        <textarea style="width:100% !important;" ng-model="reportinfo.Answer[question.id]['Text'][$index]" class="form-control" rows="5" columns="10" ng-init="reportInfo.answer[question.id]['Text'][$index] = ''"></textarea>                                
+                                                    </div>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div ng-if="question.type == 'dropdown'">
+                                            <select ng-model="reportInfo.answer[question.id][$index]" ng-init="reportInfo.answer[question.id] = ''">
+                                                <option value=""> --- Choose --- </option>
+                                                <option ng-show="ch.questionid == question.id" ng-repeat="ch in dropdownChoices"> {{ch.choice}} </option>
+                                            </select>
+                                            <textarea style="width:100% !important;" ng-model="reportInfo.answer[question.id]['Textbox'][$index]" class="form-control" 
+                                                rows="5" columns="10" ng-init="reportInfo.answer[question.id]['Textbox'][$index] = ''"></textarea>
+                                        </div>
+                                        <ul ng-if="question.type == 'conditionalyesnotext'">
+                                            <input ng-model="reportInfo.answer[question.id][$index]" type="radio" value='y' ng-init="reportInfo.answer[question.id][$index] = ''"> Yes
+                                            <input ng-model="reportInfo.answer[question.id][$index]" type="radio" value='n' ng-click="resetValue(question.id)"> No
+                                            <select ng-show="reportInfo.answer[question.id][$index] == 'y'" ng-model="reportInfo.answer[question.id]['Text'][$index]" 
+                                                ng-init="reportInfo.answer[question.id]['Text'][$index] = ''">
+                                                <option value=""> --- Choose --- </option>
+                                                <option ng-show="ch.questionid == question.id" ng-repeat="ch in dropdownChoices"> {{ch.choice}} </option>
+                                            </select>
+                                            <textarea ng-show="reportInfo.answer[question.id][$index] == 'y'" style="width:100% !important;" ng-model="reportInfo.answer[question.id]['Textbox'][$index]" 
+                                                class="form-control" rows="5" columns="10" ng-init="reportInfo.answer[question.id]['Textbox'][$index] = ''"></textarea>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-2">
+            <a class="btn btn-info btn-lg" ng-click="saveInfo(reportInfo, reportName)">Save</a><br>
+            <a class="btn btn-info btn-lg" href="/#">Cancel</a><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,52 @@
+<div ng-repeat="question in questions">
+	<div class="media">
+		<div class="media-body">
+			<div class="media-heading">
+				<br>
+				{{question.QuestionNr}}. {{question.Question}} - {{question.Type}}
+			</div>
+			<div ng-if="question.Type =='radio'">
+				<div ng-repeat="ans in answers">
+					<div ng-if="question.ID == ans.QuestionID">
+						<div ng-repeat="ch in radio">
+							<div ng-if="ch.QuestionID == question.ID">
+								<label class="radio-inline">
+									<input type="radio" value="{{ch.Choice}}" ng-model="ans.Answer['radio']">
+									{{ch.Choice}}
+								</label>
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+			<div ng-if="question.Type == 'checkbox'">
+				<div ng-repeat="ans in answers">
+					<div ng-if="question.ID == ans.QuestionID">
+						<div ng-repeat="ch in checkbox">
+							<ul ng-if="ch.QuestionID == question.ID">
+								<label class="checkbox-inline">
+									<input ng-model="ans.Answer['checkbox']['data'][$index]" type="checkbox" ng-true-value="'{{ch.Choice}}'" ng-false-value="''"  >  {{ch.Choice}}
+								</label>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div ng-if="question.Type == 'text'">
+				<div ng-repeat="ans in answers">
+					<div ng-if="question.ID == ans.QuestionID">
+						<div class="form-group">
+						<textarea ng-model="ans.Answer['text']" class="form-control" rows="5" ></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col-md-12">
+	<a class="btn btn-default pull-right inline" style="margin-left: 2px;" ng-click="saveInfo('next')">{{buttonNext}}</a>
+	<a class="btn btn-default pull-right inline" style="margin-right: 2px;" ng-click="saveInfo('save')">{{buttonSave}}</a> 
+</div>
+

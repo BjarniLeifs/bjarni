@@ -175,6 +175,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpP
 			templateUrl: 'views/feedback/editfeedbackreport.html',
 			controller: 'EditFeedbackSoftwareCtrl'
 		})
+		.state('main.editfeedbackreport.feedbackview', {
+			url: '/view',
+			templateUrl: 'views/feedback/feedbackreportview.html',
+			controller: 'FeedbackViewCtrl'
+		})
 	/*
 	*
 	*

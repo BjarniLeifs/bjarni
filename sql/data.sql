@@ -222,11 +222,16 @@ INSERT INTO question_feedback_checkbox_choices (ID, QuestionID, Choice) VALUES
 (41, 18, 'Conducting evaluation'),
 (42, 18, 'Analysing the data'),
 (43, 18, 'Making decisions'),
-(44, 22, 'Stating purpose'),
-(45, 22, 'Timing'),
-(46, 22, 'Conducting evaluation'),
-(47, 22, 'Analysing the data'),
-(48, 22, 'Making decisions');
+(44, 20, 'Stating purpose'),
+(45, 20, 'Timing'),
+(46, 20, 'Conducting evaluation'),
+(47, 20, 'Analysing the data'),
+(48, 20, 'Making decisions'),
+(49, 22, 'Stating purpose'),
+(50, 22, 'Timing'),
+(51, 22, 'Conducting evaluation'),
+(52, 22, 'Analysing the data'),
+(53, 22, 'Making decisions');
 
 
 INSERT INTO question_feedback_radio_choices (ID, QuestionID, Choice) VALUES

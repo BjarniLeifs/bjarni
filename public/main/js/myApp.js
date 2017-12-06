@@ -1,4 +1,4 @@
-/*! Made on 27-11-2017 */
+/*! Made on 06-12-2017 */
 /* Angular routing and app declatation */
 
 var app = angular.module('ramesApp', ['ui.router', 'angular-growl']);
@@ -175,6 +175,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpP
 			url: '/software',
 			templateUrl: 'views/feedback/editfeedbackreport.html',
 			controller: 'EditFeedbackSoftwareCtrl'
+		})
+		.state('main.editfeedbackreport.feedbackview', {
+			url: '/view',
+			templateUrl: 'views/feedback/feedbackreportview.html',
+			controller: 'FeedbackViewCtrl'
 		})
 	/*
 	*
@@ -506,6 +511,45 @@ app.controller('EditReportCtrl', ['$scope', '$state', '$stateParams', '$location
 			//	$scope.reports = reportFactory.getAll();
 			}, 110
 		);
+		$scope.saveInfo = function(status) {
+			var config = {};
+			var error = false;
+			
+			angular.forEach($scope.answers, function(value, key) {
+				reportInfoFactory.post(value).then(function (data) {
+					if (data.status != 200)
+						error = true;
+				});
+			})
+			if (error)
+				growl.error("Something went wrong, please try again later.", config); // info warning error sucess
+			else {
+				if (status === 'next') {
+					growl.success("Information successfully saved.", config);
+					$state.go('main.project.overview',{'id': $stateParams.id });
+				}
+				else if (status === 'Roles') {
+					$state.go('main.editreport.editroles');
+				}
+				else if (status === 'Activities') {
+					$state.go('main.editreport.editactivity');
+				}
+				else if (status === 'Material') {
+					$state.go('main.editreport.editmaterial');
+				}
+				else if (status === 'Environment') {
+					$state.go('main.editreport.editenvironment');
+				}
+				else if (status === 'Software') {
+					$state.go('main.editreport.editsoftware');
+				}
+				else if (status === 'Project') {
+					$state.go('main.project.overview',{id: $stateParams.id});
+				}
+				else
+					growl.success("Information successfully saved.", config);
+			}
+		};
 	}
 ]);
 
@@ -1042,6 +1086,120 @@ app.controller('ErrorCtrl', ['$scope', '$state', '$stateParams', '$location', '$
 
 	}
 ]);
+
+'use strict';
+app.controller('FeedbackViewCtrl', ['$scope', '$state', '$stateParams', '$location', '$timeout', 'aboutFactory',
+				 'ramesInfoFactory', 'questionFactory', 'choicesFactory', 'categoryFactory', 
+				 'reportInfoFactory',
+	function ($scope, $state, $stateParams, $location, $timeout, aboutFactory, ramesInfoFactory, 
+		questionFactory, choicesFactory, categoryFactory, reportInfoFactory) {
+
+				
+			$scope.answers   = reportInfoFactory.getByFeedbackReportId($stateParams.reportid);			
+			$scope.questions = questionFactory.getFeedbackQuestions();
+			
+			$timeout(
+				function() {
+					$scope.viewReport = [];
+					angular.forEach($scope.questions,
+						function (que, iKey) {
+							var text = '';	
+							angular.forEach($scope.answers,
+								function (ans, qKey) {
+									if (que.ID == ans.QuestionID) {
+										if (ans.Answer.number){
+											if (text == '')
+												text += ans.Answer.number;
+											else 
+												text += ' ,'+ans.Answer.number;
+										}
+										else if (ans.Answer.Text) {
+											if (ans.Answer.Text.conditionalyesnotext) {
+												if (text == '')
+													text += ans.Answer.Text.conditionalyesnotext;
+												else
+													text += ans.Answer.Text.conditionalyesnotext;
+											}
+											else {
+												if (text == '')
+													text += ans.Answer.Text;
+												else
+													text += ' ,'+ans.Answer.Text;
+											}
+											if (ans.Answer.Textbox) {
+												if (ans.Answer.Textbox.conditionalyesnotext) {
+													if (text == '')
+														text += ans.Answer.Textbox.conditionalyesnotext;
+													else
+														text += ans.Answer.Textbox.conditionalyesnotext;
+												}
+												else {
+													if (text == '')
+														text += ans.Answer.Textbox;
+													else
+														text += ', '+ans.Answer.Textbox;
+												}
+											}
+										}
+										else if (ans.Answer.checkbox) {
+											if (ans.Answer.checkbox.data) {
+												angular.forEach(ans.Answer.checkbox.data,
+													function(value, key) {
+														if (text == '')
+															text += value;
+														else
+															text += ', '+value;		
+													})
+												if (ans.Answer.checkbox.Text) {
+													if (text == '')
+														text += ans.Answer.checkbox.Text;
+													else
+														text += ', '+ ans.Answer.checkbox.Text;
+												}
+
+											}
+										}
+										else if (ans.Answer.text) {
+											if (text == '')
+												text += ans.Answer.text;
+											else
+												text += ', '+ ans.Answer.text;
+										}
+										else if (ans.Answer.radio) {
+											if (text == '')
+												text += ans.Answer.radio;
+											else 
+												text += ', '+ ans.Answer.radio;
+										}
+										else if (ans.Answer.yesno) {
+											if (text == '')
+												text += ans.Answer.yesno;
+											else 
+												text += ', '+ ans.Answer.yesno;
+										}
+										else if (ans.Answer.conditionalyesnotext) {
+											if( text == '')
+												text += ans.Answer.conditionalyesnotext;
+											else
+												text += ', '+ ans.Answer.conditionalyesnotext;
+										}
+									}
+								}
+							)
+							var addMe = {
+								id : que.ID,
+								Question : que.Question,
+								Answer : text
+							};
+							$scope.viewReport.push(addMe);
+							text = '';					
+						}
+					)
+				}, 150
+			);
+		}
+	]
+);
 
 'use strict';
 app.controller('ManagementCtrl', ['$scope', '$state', '$stateParams', '$location', '$timeout', 'aboutFactory', 
@@ -1778,6 +1936,18 @@ app.factory('questionFactory', ['$http', '$window', 'configFactory',
 			});
 			return returnMe;
 		}
+		
+		question.getFeedbackQuestions = function () {
+			var returnMe = [];
+			$http
+			 .get(baseUrl + "/api/feedback/ramesquestion")
+			  .success(function (data) {
+				angular.copy(data, returnMe);
+			});
+			return returnMe;
+		}
+
+
 		return question;
 	}
 ]);
@@ -1881,6 +2051,18 @@ app.factory('reportInfoFactory', ['$http', '$window', 'configFactory',
 		return returnMe;
 
 	}
+
+    info.getByFeedbackReportId = function (id) {
+		var returnMe = [];
+		$http
+		 .get(baseUrl + "/api/feedback/reportsinfo/report/"+id)
+		  .success(function (data) {
+			angular.copy(data, returnMe);
+
+		});
+		return returnMe;
+	}
+
 	info.post = function (data) {
 		
 		return $http.put(baseUrl + '/api/reportsinfo', data);//.success(function (data) {

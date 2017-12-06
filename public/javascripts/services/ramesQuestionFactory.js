@@ -33,6 +33,18 @@ app.factory('questionFactory', ['$http', '$window', 'configFactory',
 			});
 			return returnMe;
 		}
+		
+		question.getFeedbackQuestions = function () {
+			var returnMe = [];
+			$http
+			 .get(baseUrl + "/api/feedback/ramesquestion")
+			  .success(function (data) {
+				angular.copy(data, returnMe);
+			});
+			return returnMe;
+		}
+
+
 		return question;
 	}
 ]);

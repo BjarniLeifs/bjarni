@@ -38,6 +38,18 @@ app.factory('reportInfoFactory', ['$http', '$window', 'configFactory',
 		return returnMe;
 
 	}
+
+    info.getByFeedbackReportId = function (id) {
+		var returnMe = [];
+		$http
+		 .get(baseUrl + "/api/feedback/reportsinfo/report/"+id)
+		  .success(function (data) {
+			angular.copy(data, returnMe);
+
+		});
+		return returnMe;
+	}
+
 	info.post = function (data) {
 		
 		return $http.put(baseUrl + '/api/reportsinfo', data);//.success(function (data) {

@@ -100,7 +100,7 @@ module.exports = function(grunt) {
     nodemon: {
       dev: {
         script: 'bin/www',
-        ignore:  ['node_modules/**','bower_components/**','public/**', 'apidoc/**']
+        ignore:  ['node_modules/**','bower_components/**', 'apidoc/**']
       }
     },
     mochaTest: {

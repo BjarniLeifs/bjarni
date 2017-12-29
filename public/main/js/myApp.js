@@ -15,7 +15,12 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpP
 			templateUrl: 'views/main.html',
 			controller: 'AuthCtrl',
 		})
-	/* About content starts */
+/* front page */
+		.state('main.home', {
+			url: '/home',
+			templateUrl: 'views/home.html'
+		})
+/* About content starts */
 		.state('main.about', {
 			url: '/about',
 			templateUrl: 'views/about/about.html',

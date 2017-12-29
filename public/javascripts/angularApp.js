@@ -8,11 +8,16 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpP
 		$httpProvider.interceptors.push('authInterceptor');
 		growlProvider.globalTimeToLive(3000);
 		$stateProvider
-/* Main content starts*/
+	/* Main content starts*/
 		.state('main', {
 			url: '/main',
 			templateUrl: 'views/main.html',
 			controller: 'AuthCtrl',
+		})
+		.state('main.home', {
+			url: '/',
+			templateUrl: 'views/home.html',
+			controller: 'HomeCtrl',
 		})
 	/* About content starts */
 		.state('main.about', {
@@ -82,7 +87,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpP
 			templateUrl: 'views/dashboard/deleteproject.html',
 			controller: 'ProjectCtrl',
 		})
-	/* Project conent starts */
+	/* Project content starts */
 	/*
 	*
 	*

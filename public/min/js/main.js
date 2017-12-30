@@ -1,1 +1,1 @@
-"use strict";console.log("Hello! Yes, this is dog!");
+"use strict";$(document).ready(function(){var n=$("#about-rames-container").offset().top;$(window).on("scroll",function(){$("#uxinn-nav").offset().top+150>n?$("#uxinn-nav").addClass("uxinn-nav-low"):$("#uxinn-nav").removeClass("uxinn-nav-low")}),$("#contact-button").on("click",function(){var n={name:$("#form-name").val(),email:$("#form-email").val(),subject:$("#form-subject").val(),message:$("#form-message").val()};$.post("/contact",n,function(n){console.log("res",n)})})});

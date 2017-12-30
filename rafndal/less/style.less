@@ -1,6 +1,8 @@
 @green: rgb(131, 224, 131);
 @purple: rgb(83, 27, 109);
+@light-purple : rgb(89, 86, 116);
 @nav-height: 90px;
+@gray-background : rgb(248, 248, 248);
 * {
     font-family: "boston";
     transition: .2s;
@@ -9,12 +11,13 @@
 }
 
 body {
-    margin-top: @nav-height !important;
+    //margin-top: @nav-height !important;
 }
 
 body,
 html {
     background-color: rgb(243, 243, 243);
+		//overflow-x : hidden;
 }
 
 @font-face {
@@ -35,6 +38,29 @@ html {
     font-weight: normal;
     font-style: normal;
 }
+
+/*
+.main-part {
+	width : 100%;
+	height : 100vh;
+}
+
+#part-top {
+	background-color : rgb(89, 86, 116);
+	height : 100vh;
+	position : relative;
+	top : -10vh;
+}
+#part-about-rames {
+	background-color : rgb(248, 248, 248);
+}
+#part-about-uxinn {
+	background-color : rgb(255, 255, 255);
+}
+#part-contact-us {
+	background-color : rgb(89, 86, 116);
+}
+*/
 
 .uxinn-divider {
     width: 80px;
@@ -107,23 +133,31 @@ html {
     }
 }
 
+.uxinn-nav-low {
+	background-color : rgba(255, 255, 255, 0.5) !important;
+	.color-swap {
+		color: black !important;
+	}
+}
+
 #front-page-banner {
     position: relative;
-    height: 90vh;
+    height: 100vh;
     width: 100%;
-    margin-top: -@nav-height;
+		//top : -10vh;
+    //margin-top: -@nav-height;
     #front-page-banner-image {
         z-index: 20;
         width: 100%;
         background: url(/image/bridge.jpeg) 50% / cover;
-        height: 90vh;
+        height: 100vh;
     }
     #front-page-banner-overlay {
         padding: 30px;
         z-index: 30;
         position: absolute;
         background-color: rgba(46, 36, 59, 0.9);
-        height: 90vh;
+        height: 100vh;
         width: 100%;
         top: 0px;
         h1 {
@@ -152,6 +186,81 @@ html {
             color: @green !important;
         }
     }
+}
+
+#contact-container {
+	margin-top : 30px;
+	position : relative;
+	//top : 150%;
+	//height : 100vh;
+	width : 100%;
+	#contact-image {
+		z-index: 20;
+		width: 100%;
+		background: url(/image/bridge.jpeg) 50% / cover;
+		min-height: 70vh;
+	}
+	#contact-overlay {
+		//padding: 30px;
+		z-index: 30;
+		position: absolute;
+		//background-color: rgba(46, 36, 59, 0.9);
+		background-color: rgba(100, 97, 110, 0.9);
+		min-height: 70vh;
+		width: 100%;
+		top: 0px;
+		.textbox {
+			margin-top : 150px;
+			color : white;
+			text-align : center;
+			h2 {
+				font-size : 40px;
+				font-weight : 600;
+			}
+		}
+		#contact-form-info {
+			margin-top : 30px;
+			input, textarea {
+				min-height : 40px;
+				margin-top : 15px;
+				resize : none;
+			}
+			.full {
+				width : 100%;
+			}
+			.half {
+				width : 48%;
+			}
+			.right {
+				margin-left : 3.0%;
+			}
+			#contact-button {
+				margin-top : 15px;
+				border-radius: 20px;
+				background-color: @green;
+				height: 35px !important;
+				text-align: center;
+				width: 80px !important;
+				font-weight: 700;
+				font-size: 12px;
+				box-shadow : none !important;
+			}
+			#contact-info {
+				color : white;
+				padding-left : 50px;
+				p {
+					padding-bottom : 0px;
+					margin-bottom : 0px;
+				}
+				a {
+					color : white;
+					&:hover {
+						text-decoration : none;
+					}
+				}
+			}
+		}
+	}
 }
 
 #about-rames-container {
@@ -186,6 +295,12 @@ html {
     }
 }
 
+.part {
+	width : 100%;
+	height : 800px;
+	//position : relative;
+}
+
 #oval-top-container {
     width: 100%;
     overflow: hidden;
@@ -197,7 +312,7 @@ html {
         top: 50%;
         left: 50%;
         transform: translate(-50%, 0);
-        margin-top: 500px;
+        margin-top: 150px;
         border-top-left-radius: 100%;
         border-top-right-radius: 100%;
         background-color: white;

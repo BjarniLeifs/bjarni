@@ -88,6 +88,7 @@ app.use('/api',jwtCheck({
 app.use('/', require('./routes/index'));
 /* Routes for the api */
 app.use('/auth',                                 require('./routes/authentication'));
+app.use('/contact',                                 require('./routes/contact'));
 app.use('/api/user',                             require('./routes/users'));
 app.use('/api/project',                          require('./routes/project'));
 app.use('/api/reports',                          require('./routes/reports'));

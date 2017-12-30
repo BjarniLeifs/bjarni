@@ -1,4 +1,4 @@
-/*! Made on 28-12-2017 */
+/*! Made on 30-12-2017 */
 /* Angular routing and app declatation */
 
 var app = angular.module('ramesApp', ['ui.router', 'angular-growl']);
@@ -9,18 +9,18 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpP
 		$httpProvider.interceptors.push('authInterceptor');
 		growlProvider.globalTimeToLive(3000);
 		$stateProvider
-/* Main content starts*/
+	/* Main content starts*/
 		.state('main', {
 			url: '/main',
 			templateUrl: 'views/main.html',
 			controller: 'AuthCtrl',
 		})
-/* front page */
 		.state('main.home', {
-			url: '/home',
-			templateUrl: 'views/home.html'
+			url: '/',
+			templateUrl: 'views/home.html',
+			controller: 'HomeCtrl',
 		})
-/* About content starts */
+	/* About content starts */
 		.state('main.about', {
 			url: '/about',
 			templateUrl: 'views/about/about.html',
@@ -88,7 +88,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpP
 			templateUrl: 'views/dashboard/deleteproject.html',
 			controller: 'ProjectCtrl',
 		})
-	/* Project conent starts */
+	/* Project content starts */
 	/*
 	*
 	*

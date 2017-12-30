@@ -1,42 +1,151 @@
-
-<nav id="uxinn-nav" class="navbar navbar-default navbar-fixed-top">
- <div class="container-fluid"> 
-  <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">UXINN</a>
-    </div>
-  <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a ui-sref="main.about.picture">About RAMES</a></li>
-        <li><a ui-sref="main.aboutcreator">About us</a></li>
-        <li><a ui-sref="main.contactus">Contact us</a></li>
-        <li ng-show="isLoggedIn" ><a ui-sref="main.dashboard.overview">Dashboard</a></li>
-        
-        <!-- TODO: UNCOMMENT AFTER BASIC NAV LOOK IS READY -->
-        <!--<li ng-show="true" ><a ui-sref="main.management">Management</a></li>-->
-        <li ng-hide="isLoggedIn"><a ui-sref="main.login" class="uxinn-button-transparent">LOG IN</a></li>
-        <li ng-hide="isLoggedIn"><a ui-sref="main.register" class="uxinn-button">REGISTER</a></li>
-        <li class="dropdown" ng-show="isLoggedIn">
-          <a ui-sref="main.welcome" data-toggle="dropdown">{{currentName}} <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Settings</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a ng-click="logout()">Sign out</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+<div id='part-top' class='main-part'>
+	<nav id="uxinn-nav" class="navbar navbar-default navbar-fixed-top">
+	 <div class="container-fluid"> 
+		<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand color-swap" href="#">UXINN</a>
+			</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a ui-sref="main.about.picture" class='color-swap'>About RAMES</a></li>
+					<li><a ui-sref="main.aboutcreator" class='color-swap'>About us</a></li>
+					<li><a ui-sref="main.contactus" class='color-swap'>Contact us</a></li>
+					<li ng-show="isLoggedIn" ><a ui-sref="main.dashboard.overview">Dashboard</a></li>
+					
+					<!-- TODO: UNCOMMENT AFTER BASIC NAV LOOK IS READY -->
+					<!--<li ng-show="true" ><a ui-sref="main.management">Management</a></li>-->
+					<li ng-hide="isLoggedIn"><a ui-sref="main.login" class="uxinn-button-transparent">LOG IN</a></li>
+					<li ng-hide="isLoggedIn"><a ui-sref="main.register" class="uxinn-button">REGISTER</a></li>
+					<li class="dropdown" ng-show="isLoggedIn">
+						<a ui-sref="main.welcome" data-toggle="dropdown">{{currentName}} <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Profile</a></li>
+							<li><a href="#">Settings</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a ng-click="logout()">Sign out</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+</div>
+<!--
+<div id='part-about-rames' class='main-part'>
+</div>
+<div id='part-about-uxinn' class='main-part'>
+</div>
+<div id='part-contact-us' class='main-part'>
+</div>
+-->
 <!--main content start-->
+<div id="front-page-banner">
+  <div id="front-page-banner-image"></div>
+  <div id="front-page-banner-overlay" class="text-center">
+    <h1>We provide best user experience</h1>
+    <p>From small businesses to large companies, we have been successfully creating websites and web applications for our clients.</p>
+    <a id="about-rames-link">ABOUT RAMES</a>
+  </div>
+</div>
+
+<div id="about-rames-container" class="text-center">
+  <h2>About RAMES</h2>
+  <div class="uxinn-divider">
+    <div class="uxinn-divider-inner"></div>
+  </div>
+  <p id="about-rames-p">Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet domir id quod mazim.</p>
+  <div class="container">
+    <div class="row">
+      <div class="about-rames-item col-md-2 col-sm-4 col-md-push-1">
+        <p class="about-header">ROLES</p>
+        <p class="about-subtext">Nam liber tempor cum soluta nobis eleifend</p>
+      </div>
+      <div class="about-rames-item col-md-2 col-sm-4 col-md-push-1">
+        <p class="about-header">ACTIVITIES</p>
+        <p class="about-subtext">Nam liber tempor cum soluta nobis eleifend</p>
+      </div>
+      <div class="about-rames-item col-md-2 col-sm-4 col-md-push-1">
+        <p class="about-header">MATERIALS</p>
+        <p class="about-subtext">Nam liber tempor cum soluta nobis eleifend</p>
+      </div>
+      <div class="about-rames-item col-md-2 col-sm-4 col-md-push-1">
+        <p class="about-header">ENVIRONMENT</p>
+        <p class="about-subtext">Nam liber tempor cum soluta nobis eleifend</p>
+      </div>
+      <div class="about-rames-item col-md-2 col-sm-4 col-md-push-1">
+        <p class="about-header">SOFTWARE</p>
+        <p class="about-subtext">Nam liber tempor cum soluta nobis eleifend</p>
+      </div>
+    </div>
+  </div>
+  <div id="gray-box"> </div>
+	<div class='part'>
+  <div id="oval-top-container">
+    <div id="oval-top-background">
+      <h2>About UXINN</h2>
+      <div class="uxinn-divider">
+        <div class="uxinn-divider-inner"></div>
+      </div>
+      <p id="about-uxinn-p">Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet domir id quod mazim.</p>
+      <div class="container">
+        <div class="row">
+          <div class="about-uxinn-item col-md-4">
+            <img src="/image/Marta.png"></img>
+            <p class="about-header">Dr. Marta Kristín Lárusdóttir</p>
+            <p class="about-subtext">Nam liber tempor cum soluta nobis eleifend</p>
+          </div>
+          <div class="about-uxinn-item col-md-4">
+            <img src="/image/Marta.png"></img>
+            <p class="about-header">Sigurjón Albertsson</p>
+            <p class="about-subtext">Nam liber tempor cum soluta nobis eleifend</p>
+          </div>
+          <div class="about-uxinn-item col-md-4">
+            <img src="/image/Marta.png"></img>
+            <p class="about-header">Bjarni Kristinnson</p>
+            <p class="about-subtext">Nam liber tempor cum soluta nobis eleifend</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+	</div>
+</div>
+<div id='contact-container'>
+  <div id="contact-image"></div>
+  <div id="contact-overlay">
+		<div class='col-xs-12'>
+			<div class='textbox col-md-6 col-md-offset-3'>
+				<h2>Contact us</h2>
+				<p>Feel free to contact us</p>
+			</div>
+		</div>
+		<div class='col-xs-12' id='contact-form-info'>
+			<div class='col-md-3 col-md-offset-3'>
+				<input class='full' type='text' id='form-name' placeholder='Name'/>
+				<input class='half' type='text' id='form-email' placeholder='Email'/>
+				<input class='half right' type='text' id='form-subject' placeholder='Subject'/>
+				<textarea class='full' rows='5' id='form-message' placeholder='Message'></textarea>
+				<button type='button' id='contact-button'>SEND</button>
+			</div>
+			<div class='col-md-3' id='contact-info'>
+				<h3>Our Office</h3>
+				<p>Reykjavik University.</p>
+				<p>School of Computer Science</p>
+				<p>Menntavegur 1, 101 Reykjavik, Iceland</p>
+				<a href='tel:+3545996200'>Tel: +354-5996200</a>
+				<p>Dr. Marta Kristin Larusdottir</p>
+				<a href='mailto:marta@ru.is'>marta@ru.is</a>
+			</div>
+		</div>
+	</div>
+</div>
 <section ng-style="myStyle" >
   <div growl> </div> <!-- Notifications -->
   <div ui-view> </div> <!-- view renderer -->
